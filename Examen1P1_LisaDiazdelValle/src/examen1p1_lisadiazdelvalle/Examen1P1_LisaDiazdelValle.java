@@ -26,7 +26,8 @@ public class Examen1P1_LisaDiazdelValle {
             System.out.println("1. Primos ");
             System.out.println("2. Contorno de pramide ");
             System.out.println("3. Vecinos ");
-            System.out.println("4. salida");
+            System.out.println("4. Triangulo de Pascal");
+            System.out.println("5. salida");
             System.out.println("Ingrese el numero de la opcion: ");
             int opcion = leer.nextInt();
             switch (opcion) {
@@ -55,6 +56,16 @@ public class Examen1P1_LisaDiazdelValle {
                     System.out.println(vecinos(cadena));
                     break;
                 case 4:
+                    System.out.println("---Tiangulo de pascal---");
+                    System.out.println("Ingrese un numero: ");
+                    int num = leer.nextInt();
+                    if(num <=0){
+                        System.out.println("Numero invalido. Ingrese un numero valido: ");
+                        num = leer.nextInt();                   
+                    }
+                    pascal(num);
+                    break;
+                case 5:
                     cont = false;
                     break;
                 default:
@@ -64,7 +75,6 @@ public class Examen1P1_LisaDiazdelValle {
         } while (cont);
     }//main
     //primos
-
     public static String primos(int N) {
         int cont1 = 0;
         String cont2 = "1 ";
@@ -89,7 +99,6 @@ public class Examen1P1_LisaDiazdelValle {
         return cont2;
     }//fin primos
     //contorno de piramide
-
     public static void contorno(int n) {
         int cont=0;
         if (n % 2 == 0) {
@@ -149,5 +158,36 @@ public class Examen1P1_LisaDiazdelValle {
                 }
         }
         return acum;
+    }
+    //factorial/pascal
+    public static int factorial (int num){
+        int factorial =1;
+        for(int i = 1; i<= num; i++){
+            factorial = factorial * i;
+        }
+     return factorial;   
+    }//fin factorial
+    //permutacion/pascal
+    public static int permutacion (int n, int r){
+        int permutacion = 0;
+        permutacion = factorial(n)/factorial (n-r);
+        return permutacion;
+    }//fin permutacion
+    //combinacion/pascal
+    public static int combinacion (int r, int n){
+        int combinacion = 0;
+        combinacion = permutacion(n,r)/factorial(r);
+        return combinacion;
+    }//fin combinacion
+    //pascal
+    public static void pascal (int N){
+        for (int i=0; i<N; i++){
+            for (int j=0; j<=i; j++){
+            int r=j;
+            int n=i;
+                System.out.print("["+combinacion(r,n)+"]");
+            }
+            System.out.println("");
+        }
     }
 }
